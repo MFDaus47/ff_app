@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'subscriptionpage.dart';
 import 'main.dart';
-// =========================================================================
-// 🎨 STYLE & CONFIGURATION SECTION (THEMES, COLORS, & TYPOGRAPHY)
-// =========================================================================
 
 // 1. Color Palette Definitions
 const Color primaryOrange = Color(0xFFFF9800);
@@ -12,12 +8,12 @@ const Color communityBlueStart = Color(0xFF3B82F6);
 const Color communityBlueEnd = Color(0xFF06B6D4);
 const Color darkSlateText = Color(0xFF1E293B);
 
-// 2. Typography Styles (Updated with premium spacing and weights)
+// 2. Typography Styles 
 const TextStyle largeWelcomeTitleStyle = TextStyle(
   color: Colors.white,
   fontSize: 24,
   fontWeight: FontWeight.w800,
-  letterSpacing: -0.5, // Tighter spacing for a high-end designer look
+  letterSpacing: -0.5, 
 );
 
 const TextStyle sectionTitleStyle = TextStyle(
@@ -36,16 +32,15 @@ const TextStyle productNameStyle = TextStyle(
 
 const TextStyle priceTextStyle = TextStyle(
   fontSize: 18,
-  fontWeight: FontWeight.w900, // Extra heavy for professional pricing layout
+  fontWeight: FontWeight.w900, 
   color: primaryOrange,
   letterSpacing: -0.2,
 );
 
-// 3. Data Models for Dynamic Rendering
 class CategoryItem {
   final String id;
   final String name;
-  final String icon; // Image link configuration for custom illustrations
+  final String icon; 
   final Color color;
 
   const CategoryItem({
@@ -62,7 +57,7 @@ class ProductItem {
   final double price;
   final double rating;
   final int reviews;
-  final String image; // Direct network URLs for mockup graphics
+  final String image; 
 
   const ProductItem({
     required this.id,
@@ -74,7 +69,6 @@ class ProductItem {
   });
 }
 
-// 4. Mock Data Arrays (Updated with real custom web image graphics)
 const List<CategoryItem> categories = [
   CategoryItem(
     id: 'dogs',
@@ -147,9 +141,6 @@ const List<ProductItem> products = [
   ),
 ];
 
-// =========================================================================
-// 📱 INTERFACE SECTION (WIDGET TREE & UI COMPONENTS)
-// =========================================================================
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -174,7 +165,7 @@ class HomePage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
+              horizontal: 20.0,
               vertical: 12.0,
             ),
             child: Column(
@@ -204,7 +195,6 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  // --- Sub-Component Builders (Isolated layout objects) ---
 
   Widget _buildHeaderBar() {
     return Row(
@@ -212,23 +202,21 @@ class HomePage extends StatelessWidget {
       children: [
         Row(
           children: [
-            // BRAND LOGO IMAGE SLOT: Clean local asset setup with proper framing
             ClipRRect(
               borderRadius: BorderRadius.circular(
                 16,
-              ), // Re-enabled and increased curve for a bigger logo
+              ), 
               child: Image.asset(
-                'assets/logo.png', // FIXED: Changed from Image.network to Image.asset
-                width:
-                    65, // Adjusted to a balanced premium header size (Switch to 80 if you prefer it massive)
+                'assets/logo.png', 
+                width: 65, 
                 height: 65,
                 fit: BoxFit
-                    .contain, // Changed to contain so your logo graphic doesn't get awkwardly cropped
+                    .contain, 
               ),
             ),
             const SizedBox(
               width: 12,
-            ), // Slightly increased spacing to match the bigger logo
+            ),
             const Text(
               'Fluffy Friend',
               style: TextStyle(
@@ -240,7 +228,7 @@ class HomePage extends StatelessWidget {
             ),
           ],
         ),
-        // Rounded custom container styling for notification action button
+  
         Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
@@ -265,7 +253,7 @@ class HomePage extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
           24,
-        ), // High curve border radius configuration
+        ),
         gradient: const LinearGradient(
           colors: [primaryOrange, gradientOrangeEnd],
           begin: Alignment.topLeft,
@@ -278,7 +266,7 @@ class HomePage extends StatelessWidget {
             offset: const Offset(
               0,
               8,
-            ), // Gives an ambient professional elevation look
+            ), 
           ),
         ],
       ),
@@ -336,7 +324,7 @@ Widget _buildQuickActionGrid(BuildContext context) {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       crossAxisSpacing: 14,
-      childAspectRatio: 1.35,
+      childAspectRatio: 1.50,
       children: [
         _buildActionCard(
           context,
@@ -530,7 +518,7 @@ Widget _buildQuickActionGrid(BuildContext context) {
               BoxShadow(
                 color: const Color(
                   0xFF0F172A,
-                ).withOpacity(0.04), // Clean soft drop-shadow mapping
+                ).withOpacity(0.04),
                 blurRadius: 16,
                 offset: const Offset(0, 6),
               ),
