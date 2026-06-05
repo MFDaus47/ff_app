@@ -51,7 +51,7 @@ class MainLayout extends StatefulWidget {
 
 class _MainLayoutState extends State<MainLayout> {
   late int _selectedIndex;
-  String _activeCategory = 'Cat';// ubah Dog
+  String _activeCategory = 'Dog';
 
   @override
   void initState() {
