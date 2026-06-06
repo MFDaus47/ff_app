@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 class StripeService {
   // Replace with your actual local machine's IP if testing on Android Emulator
   // e.g., 'http://10.0.2.2:3000'
-  static const String _backendUrl = 'YOUR_BACKEND_URL_HERE'; 
+  static const String _backendUrl = 'https://ff-app-1zzg.onrender.com'; 
 
   static Future<void> makePayment(BuildContext context, String amount) async {
     try {
