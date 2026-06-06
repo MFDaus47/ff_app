@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'cart_provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart'; // 1. IMPORT FIRESTORE
 import 'main.dart';
+import 'product_data.dart';
 
 const Color primaryOrange = Color(0xFFFF9800);
 const Color darkSlateText = Color(0xFF1E293B);
 
-class ProductItem {
-  final String id;
-  final String name;
-  final double price;
-  final double rating;
-  final int reviews;
-  final String description;
-  final String image;
 
   const ProductItem({
     required this.id, 
@@ -47,6 +42,20 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+
+  void _addToCart(BuildContext context, ProductItem product) {
+    // Sends the item to the provider
+    Provider.of<CartProvider>(context, listen: false).addToCart(product);
+    
+    // Shows the green success pop-up
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('${product.name} added to cart! 🛒'),
+        backgroundColor: Colors.green,
+        duration: const Duration(seconds: 1),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -181,41 +190,27 @@ class _ShopPageState extends State<ShopPage> {
                                 height: 1.4,
                               ),
                             ),
-                            const SizedBox(height: 12),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  '\$${product.price.toStringAsFixed(2)}', 
-                                  style: const TextStyle(
-                                    fontSize: 18, 
-                                    fontWeight: FontWeight.w900, 
-                                    color: primaryOrange,
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: primaryOrange,
-                                    foregroundColor: Colors.white,
-                                    elevation: 0,
-                                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                                    minimumSize: const Size(70, 36),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ), 
-                                  ),
-                                  onPressed: () {},
-                                  child: const Text(
-                                    'Add', 
-                                    style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
-                                  ),
-                                ),
-                              ],
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: primaryOrange,
+                                foregroundColor: Colors.white,
+                                elevation: 0,
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                                minimumSize: const Size(70, 36),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ), 
+                              ),
+                              onPressed: () => _addToCart(context, product),
+                              child: const Text(
+                                'Add', 
+                                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w800),
+                              ),
                             ),
                           ],
                         ),
-                      ),
-                    ],
+                      ],  
+                    ),
                   ),
                 ),
               );
