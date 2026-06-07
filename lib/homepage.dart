@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
 import 'cart_provider.dart';
 import 'main.dart';
 import 'about_us_page.dart';
@@ -581,12 +582,19 @@ class HomePage extends StatelessWidget {
                       onTap: () => _navigate(context, '/product/$id'),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: Image.network(
+                        child: image.startsWith('data:image')
+                        ? Image.memory(
+                          base64Decode(image.split(',').last),
+                          width: 90,
+                          height: 90,
+                          fit: BoxFit.cover,
+                        )
+                        : Image.network(
                           image,
                           width: 90,
                           height: 90,
                           fit: BoxFit.cover,
-                        ),
+                        )
                       ),
                     ),
                     const SizedBox(width: 16),
