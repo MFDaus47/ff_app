@@ -405,7 +405,10 @@ class HomePage extends StatelessWidget {
         highlightColor: iconColor.withOpacity(0.05),
         onTap: () {
           if (route == 'subscription') {
-            MainLayout.changeTab(context, 4);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SubscriptionPage()),
+            );
           } else if (route == 'about') {
             Navigator.push(
               context,
