@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class PetTipsPage extends StatefulWidget {
   const PetTipsPage({Key? key}) : super(key: key);
@@ -163,10 +163,11 @@ class _PetTipsPageState extends State<PetTipsPage> {
                                 top: Radius.circular(16),
                               ),
                               child: Image.network(
-                                YoutubePlayer.getThumbnail(
-                                  videoId: YoutubePlayer.convertUrlToId(
-                                    video['youtubeUrl'],
-                                  )!,
+                                YoutubePlayerController.getThumbnail(
+                                  videoId:
+                                      YoutubePlayerController.convertUrlToId(
+                                        video['youtubeUrl'],
+                                      )!,
                                 ),
                                 height: 180,
                                 width: double.infinity,
@@ -252,21 +253,23 @@ class VideoPlayerScreen extends StatefulWidget {
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
-  late YoutubePlayerController _controller;
+  final _controller = YoutubePlayerController(
+    params: const YoutubePlayerParams(
+      showControls: true,
+      showFullscreenButton: true,
+      mute: false,
+    ),
+  );
 
   @override
   void initState() {
     super.initState();
-    final videoId = YoutubePlayer.convertUrlToId(widget.youtubeUrl);
-    _controller = YoutubePlayerController(
-      initialVideoId: videoId!,
-      flags: const YoutubePlayerFlags(autoPlay: true, mute: false),
-    );
+    final videoId = _controller.loadVideo(widget.youtubeUrl);
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _controller.close();
     super.dispose();
   }
 
@@ -275,13 +278,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(backgroundColor: Colors.transparent, elevation: 0),
-      body: Center(
-        child: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          progressIndicatorColor: Colors.orange,
-        ),
-      ),
+      body: Center(child: YoutubePlayer(controller: _controller)),
     );
   }
 }
