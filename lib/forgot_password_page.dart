@@ -63,7 +63,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   const SizedBox(height: 8),
                   Text(
                     'Enter your email and we will send you a password reset link.',
-                    textAlign: Center,
+                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 14, color: Colors.blueGrey[400]),
                   ),
                   const SizedBox(height: 24),
