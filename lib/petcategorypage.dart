@@ -215,7 +215,7 @@ class PetCategoryPage extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  '\$${price.toStringAsFixed(2)}',
+                                  'RM${price.toStringAsFixed(2)}',
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900,

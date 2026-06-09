@@ -391,7 +391,7 @@ class _HomePageState extends State<HomePage> {
                       fit: BoxFit.cover,
                     ),
               title: Text(name),
-              subtitle: Text('\$$price'),
+              subtitle: Text('RM$price'),
 
               onTap: () {
                 showDialog(
@@ -846,7 +846,7 @@ class _HomePageState extends State<HomePage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('\$$price', style: priceTextStyle),
+                              Text('RM $price', style: priceTextStyle),
                               ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: primaryOrange,

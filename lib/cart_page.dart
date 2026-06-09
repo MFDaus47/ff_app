@@ -58,7 +58,7 @@ class CartPage extends StatelessWidget {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       subtitle: Text(
-                        'Qty: ${cartItem.quantity}   |   \$${cartItem.product.price}',
+                        'Qty: ${cartItem.quantity}   |   RM${cartItem.product.price}',
                       ),
                       trailing: IconButton(
                         icon: const Icon(
@@ -98,7 +98,7 @@ class CartPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '\$${cart.totalPrice.toStringAsFixed(2)}',
+                          'RM${cart.totalPrice.toStringAsFixed(2)}',
                           style: const TextStyle(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,

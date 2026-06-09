@@ -148,7 +148,7 @@ class SubscriptionPage extends StatelessWidget {
                 textBaseline: TextBaseline.alphabetic,
                 children: [
                   Text(
-                    '\$$price',
+                    'RM$price',
                     style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w900,
