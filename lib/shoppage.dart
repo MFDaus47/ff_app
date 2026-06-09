@@ -203,7 +203,7 @@ class _ShopPageState extends State<ShopPage> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  'RM ${product.price.toStringAsFixed(2)}',
+                                  'RM ${product.price.toStringAsFixed(2)}',//2F
                                   style: const TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w900,
