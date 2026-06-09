@@ -261,21 +261,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             const SizedBox(width: 10),
-
-            // 2. Existing Notification Icon
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF8FAFC),
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFE2E8F0)),
-              ),
-              child: Icon(
-                Icons.notifications_none_outlined,
-                color: Colors.grey.shade800,
-                size: 22,
-              ),
-            ),
           ],
         ),
       ],
@@ -435,12 +420,19 @@ class _HomePageState extends State<HomePage> {
                             Center(
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(12),
-                                child: Image.network(
-                                  image,
-                                  width: 140,
-                                  height: 140,
-                                  fit: BoxFit.cover,
-                                ),
+                                child: image.startsWith('data:image')
+                                    ? Image.memory(
+                                        base64Decode(image.split(',').last),
+                                        width: 90,
+                                        height: 90,
+                                        fit: BoxFit.cover,
+                                      )
+                                    : Image.network(
+                                        image,
+                                        width: 90,
+                                        height: 90,
+                                        fit: BoxFit.cover,
+                                      ),
                               ),
                             ),
 
