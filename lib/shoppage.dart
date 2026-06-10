@@ -160,6 +160,7 @@ class _ShopPageState extends State<ShopPage> {
                               ),
                             ),
                             const SizedBox(height: 4),
+                            // Rating Row
                             Row(
                               children: [
                                 const Icon(
@@ -188,7 +189,7 @@ class _ShopPageState extends State<ShopPage> {
                             const SizedBox(height: 6),
                             Text(
                               product.description,
-                              maxLines: 5,
+                              maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               style: const TextStyle(
                                 fontSize: 12,
@@ -197,28 +198,43 @@ class _ShopPageState extends State<ShopPage> {
                               ),
                             ),
                             const SizedBox(height: 10),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: primaryOrange,
-                                foregroundColor: Colors.white,
-                                elevation: 0,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 8,
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'RM ${product.price.toStringAsFixed(2)}',//2F
+                                  style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w900,
+                                    color:
+                                        primaryOrange, 
+                                  ),
                                 ),
-                                minimumSize: const Size(70, 36),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(12),
+                                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: primaryOrange,
+                                    foregroundColor: Colors.white,
+                                    elevation: 0,
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                      vertical: 8,
+                                    ),
+                                    minimumSize: const Size(70, 36),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                  ),
+                                  onPressed: () => _addToCart(context, product),
+                                  child: const Text(
+                                    'Add',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w800,
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              onPressed: () => _addToCart(context, product),
-                              child: const Text(
-                                'Add',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
+                              ],
                             ),
                           ],
                         ),
